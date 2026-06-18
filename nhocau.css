@@ -1,0 +1,163 @@
+/* --- Các thiết lập cơ bản --- */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 50px;
+    background-color: transparent; 
+    position: relative;
+    overflow-x: hidden;
+}
+        
+/* NỀN CỐ ĐỊNH (MÀU HỒNG) */
+#animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0; /* Nền phía sau, nhưng vẫn nằm trong lớp hiển thị */
+    background-color: #f1709b; /* Màu nền hồng mặc định */
+}
+
+/* KHUNG CHỨA CÁC ẢNH RƠI */
+#falling-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; /* Nằm trên nền, dưới khung nội dung */
+    pointer-events: none; /* Rất quan trọng: Xuyên qua ảnh để bấm được nút ở dưới */
+    overflow: hidden; /* Giấu ảnh khi nó rơi ra ngoài mép màn hình */
+}
+
+/* HIỆU ỨNG CHO TỪNG BỨC ẢNH RƠI */
+.falling-img {
+    position: absolute;
+    top: -150px; /* Bắt đầu rơi từ khuất phía trên màn hình */
+    object-fit: cover; /* Cắt ảnh thành hình vuông đẹp, không bị méo */
+    border-radius: 12px; /* Bo tròn góc ảnh */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    opacity: 0.9; 
+    animation: fall linear infinite; /* Chạy hiệu ứng rơi lặp lại mãi mãi */
+}
+
+/* Khung hình chuyển động từ trên xuống dưới, kết hợp xoay nhẹ */
+@keyframes fall {
+    0% { transform: translateY(-100px) rotate(-15deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* --- Khung nội dung chính --- */
+.container {
+    background: rgba(255, 255, 255, 0.85); 
+    backdrop-filter: blur(8px); 
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    display: inline-block;
+    max-width: 400px;
+    position: relative; /* Đảm bảo nổi lên trên cùng */
+    z-index: 2;
+}
+
+img { max-width: 100%; border-radius: 8px; }
+.info { margin-top: 20px; line-height: 1.6; }
+
+button {
+    margin: 10px; padding: 10px 20px; font-size: 16px;
+    cursor: pointer; border: none; border-radius: 5px;
+    background-color: #007bff; color: white;
+    transition: background-color 0.3s, transform 0.2s;
+}
+button:hover { background-color: #0056b3; transform: scale(1.05); }
+
+#content-page { display: none; }
+.hidden-page { display: none; }
+.question { font-weight: bold; font-size: 1.1em; color: #d9534f; margin-top: 15px; }
+
+/* --- Khu vực upload ảnh đã làm đẹp --- */
+.divider { margin: 25px 0; border: 0; border-top: 1px solid #ddd; }
+input[type="file"]#bg-upload { display: none; }
+
+.custom-file-upload {
+    display: inline-block; padding: 12px 25px; cursor: pointer;
+    background-color: #ff6b81; color: white;
+    border-radius: 30px; font-size: 15px; font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 107, 129, 0.3);
+}
+.custom-file-upload:hover {
+    background-color: #ff4757; transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 107, 129, 0.5);
+}
+.file-name { font-size: 0.85em; color: #666; margin-top: 10px; font-style: italic; min-height: 20px; }
+
+/* --- Màu sắc nút Yes/No --- */
+.btn-yes { background-color: #28a745; }
+.btn-yes:hover { background-color: #2aab46; }
+.btn-no { background-color: #dc3545; }
+.btn-no:hover { background-color: #c82333; }
+.response-msg { font-weight: bold; font-size: 1.2em; margin-top: 15px; min-height: 25px; }
+
+.hidden-until-answer {
+    display: none;
+}
+
+.content-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-message {
+    width: 100%;
+    min-height: 140px;
+    resize: vertical;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font: inherit;
+    box-sizing: border-box;
+    margin: 12px 0 18px;
+}
+
+.btn-back-secondary {
+    background-color: #6c757d;
+}
+
+.btn-back-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* --- Các thiết lập cho trang hẹn hò --- */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+}
+
+.custom-select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    box-sizing: border-box;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.custom-select:focus {
+    border-color: #ff6b81;
+}

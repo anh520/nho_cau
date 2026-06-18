@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="nhocau.css">
+    <script src="nhocau.js" defer></script>
+    <title>Lời Nhắn</title>
+</head>
+<body>
+    <div id="animated-bg" aria-hidden="true"></div>
+    <div id="falling-container" aria-hidden="true"></div>
+
+    <div id="language-page" class="container">
+        <h2>Vui lòng chọn ngôn ngữ<br><small style="font-size: 0.7em;">Please select your language</small></h2>
+        <button onclick="setLanguage('vi')">Tiếng Việt</button><br>
+        <button onclick="setLanguage('zh')">中文</button><br>
+        <button onclick="setLanguage('en')">English</button>
+    </div>
+
+    <div id="content-page" class="container hidden-page">
+        <img src="https://i.pinimg.com/736x/c4/27/a0/c427a07703a6aac6b004631e6cb5b200.jpg" alt="Ảnh nền">
+        <div class="info">
+            <p id="poem"></p>
+
+            <p id="question" class="question"></p>
+            <div id="options-area">
+                <button id="btn-yes" class="btn-yes" onclick="reply(true)"></button>
+                <button id="btn-no" class="btn-no" onclick="reply(false)"></button>
+            </div>
+
+            <p id="response-msg" class="response-msg"></p>
+        </div>
+
+        <div class="content-actions">
+            <button id="remember-btn" class="hidden-until-answer" onclick="openRememberPage()" style="background-color: #ff6b81; margin-top: 20px; width: 100%;"></button>
+            <button id="back-btn" class="btn-back-secondary hidden-until-answer" onclick="goBack()" style="margin-top: 10px; width: 100%;"></button>
+        </div>
+    </div>
+
+    <div id="message-page" class="container hidden-page">
+        <h3 id="msg-title" style="color: #555;"></h3>
+        <textarea id="admin-message" class="admin-message"></textarea>
+        
+        <div class="content-actions">
+            <button id="btn-send" onclick="goToDatePage()" style="background-color: #28a745; width: 100%;"></button>
+            <button id="btn-back-msg" onclick="goBackFromMessage()" class="btn-back-secondary" style="margin-top: 10px; width: 100%;"></button>
+        </div>
+    </div>
+
+    <div id="date-page" class="container hidden-page">
+        <h3 id="date-title" style="color: #ff6b81; margin-bottom: 20px;"></h3>
+        
+        <div class="form-group">
+            <label id="label-gender" for="date-gender"></label>
+            <select id="date-gender" class="custom-select"></select>
+        </div>
+
+        <div class="form-group">
+            <label id="label-outfit" for="date-outfit"></label>
+            <select id="date-outfit" class="custom-select"></select>
+        </div>
+
+        <div class="form-group">
+            <label id="label-location" for="date-location"></label>
+            <select id="date-location" class="custom-select"></select>
+        </div>
+
+        <div class="content-actions" style="margin-top: 25px;">
+            <button id="btn-submit-date" onclick="sendFinalEmail(true)" style="background-color: #ff6b81; width: 100%;"></button>
+            <button id="btn-skip-date" onclick="sendFinalEmail(false)" class="btn-back-secondary" style="margin-top: 10px; width: 100%;"></button>
+        </div>
+    </div>
+
+    <div id="thanks-page" class="container hidden-page">
+        <h3 id="thanks-msg" style="color: #28a745;"></h3>
+        <button id="btn-home" onclick="returnToStart()" class="btn-back-secondary" style="margin-top: 20px;"></button>
+    </div>
+
+</body>
+</html>
